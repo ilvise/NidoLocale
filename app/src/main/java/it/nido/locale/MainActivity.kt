@@ -47,6 +47,12 @@ class MainActivity : Activity() {
     private val found = mutableListOf<Found>()
     private var scanning = false
 
+    /** Avvertenza accettata in questa apertura dell'app. */
+    private var accepted = false
+    /** true quando siamo noi ad aprire una schermata di sistema (impostazioni, permessi). */
+    private var internalNav = false
+    private var disclaimer: AlertDialog? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -65,19 +71,68 @@ class MainActivity : Activity() {
 
         btnScan.setOnClickListener { if (scanning) stopScan() else startScan() }
         btnForget.setOnClickListener { forget() }
-        btnTest.setOnClickListener { NidoService.start(this, NidoService.ACTION_TEST_ALARM) }
+        btnTest.setOnClickListener {
+            internalNav = true  // la schermata di allarme non e' una nuova apertura dell'app
+            NidoService.start(this, NidoService.ACTION_TEST_ALARM)
+        }
         btnStop.setOnClickListener { NidoService.start(this, NidoService.ACTION_STOP_ALARM) }
         txtWarnings.setOnClickListener { fixFirstWarning() }
 
-        askPermissions()
+        // Una rotazione dello schermo non e' una nuova apertura dell'app
+        if (savedInstanceState != null) {
+            accepted = savedInstanceState.getBoolean("accepted", false)
+            internalNav = true
+        }
+    }
+
+    override fun onSaveInstanceState(out: Bundle) {
+        super.onSaveInstanceState(out)
+        out.putBoolean("accepted", accepted)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        // L'avvertenza va accettata ogni volta che l'app viene aperta
+        // (ma non quando si torna da una schermata di impostazioni aperta dall'app stessa).
+        if (!internalNav) accepted = false
+        if (!accepted) showDisclaimer()
     }
 
     override fun onResume() {
         super.onResume()
-        if (Perms.missing(this).isEmpty() && Prefs.address(this) != null) {
+        internalNav = false
+        if (accepted && Perms.missing(this).isEmpty() && Prefs.address(this) != null) {
             runCatching { NidoService.start(this) }
         }
         ui.post(refresh)
+    }
+
+    override fun onDestroy() {
+        disclaimer?.dismiss()
+        super.onDestroy()
+    }
+
+    // ---------------------------------------------------------------- avvertenza
+
+    private fun showDisclaimer() {
+        if (disclaimer?.isShowing == true) return
+        disclaimer = AlertDialog.Builder(this)
+            .setTitle(R.string.disclaimer_title)
+            .setMessage(R.string.disclaimer_text)
+            .setCancelable(false)
+            .setPositiveButton(R.string.disclaimer_accept) { _, _ ->
+                accepted = true
+                askPermissions()
+                if (Perms.missing(this).isEmpty() && Prefs.address(this) != null) {
+                    runCatching { NidoService.start(this) }
+                }
+            }
+            .setNegativeButton(R.string.disclaimer_decline) { _, _ ->
+                // Chi non accetta non usa l'app: la sorveglianza viene fermata.
+                if (Perms.canConnect(this)) runCatching { NidoService.start(this, NidoService.ACTION_SHUTDOWN) }
+                finishAndRemoveTask()
+            }
+            .show()
     }
 
     override fun onPause() {
@@ -89,13 +144,14 @@ class MainActivity : Activity() {
     // ---------------------------------------------------------------- permessi
 
     private fun askPermissions() {
+        internalNav = true
         val missing = Perms.missing(this)
         if (missing.isNotEmpty()) requestPermissions(missing.toTypedArray(), 1)
     }
 
     override fun onRequestPermissionsResult(code: Int, perms: Array<out String>, res: IntArray) {
         super.onRequestPermissionsResult(code, perms, res)
-        if (Perms.missing(this).isEmpty() && Prefs.address(this) != null) NidoService.start(this)
+        if (accepted && Perms.missing(this).isEmpty() && Prefs.address(this) != null) NidoService.start(this)
         ui.post(refresh)
     }
 
@@ -130,6 +186,7 @@ class MainActivity : Activity() {
     }
 
     private fun fixFirstWarning() {
+        internalNav = true
         warnings().firstOrNull()?.second?.invoke()
     }
 

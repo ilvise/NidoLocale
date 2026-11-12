@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Nido Locale</string>
+
+    <string name="disclaimer_title">⛔ Leggi prima di usare</string>
+    <string name="disclaimer_text">NESSUNA GARANZIA, NESSUNA RESPONSABILITÀ\n\n• Questa è un\'app personale, sperimentale e amatoriale. NON è l\'app ufficiale di NIDO / Tucano e non è affiliata al produttore.\n\n• NON è un dispositivo di sicurezza certificato e NON è conforme alle norme sui dispositivi anti-abbandono (art. 172 del Codice della Strada e D.M. 2 ottobre 2018 n. 122). Usarla al posto dell\'app ufficiale può far venire meno la conformità richiesta dalla legge.\n\n• PUÒ NON FUNZIONARE senza alcun preavviso: bug, aggiornamenti di Android, risparmio batteria, Bluetooth spento o disturbato, telefono scarico, silenzioso o lontano, firmware diverso del tappetino e molte altre cause possono impedire all\'allarme di suonare.\n\n• L\'AUTORE NON SI ASSUME ALCUNA RESPONSABILITÀ per qualsiasi danno a persone, animali o cose derivante dall\'uso o dal mancato o errato funzionamento dell\'app, COMPRESI LESIONI O MORTE DI BAMBINI o di chiunque altro.\n\n• Il software è fornito \"così com\'è\", SENZA GARANZIE DI ALCUN TIPO (licenza GPL-3.0, sezioni 15 e 16).\n\n• Nessuna app sostituisce l\'attenzione dell\'adulto: la sorveglianza del bambino resta SEMPRE e SOLTANTO responsabilità di chi lo trasporta.\n\nToccando \"Accetto\" dichiari di aver letto e compreso quanto sopra e di usare l\'app interamente a tuo rischio ed esclusiva responsabilità. Se non accetti, l\'app ferma la sorveglianza e si chiude: continua a usare l\'app ufficiale del produttore.</string>
+    <string name="disclaimer_accept">Ho letto e accetto</string>
+    <string name="disclaimer_decline">Non accetto (esci)</string>
 </resources>

@@ -1,4 +1,23 @@
-# Nido Locale
+<div align="center">
+
+# 🐣 Nido Locale
+
+**L'app alternativa, libera e senza cloud per il cuscino anti-abbandono NIDO di Tucano**
+
+![Android](https://img.shields.io/badge/Android-8.0%2B-3DDC84?logo=android&logoColor=white)
+![Kotlin](https://img.shields.io/badge/Kotlin-2.0-7F52FF?logo=kotlin&logoColor=white)
+![Bluetooth LE](https://img.shields.io/badge/Bluetooth-LE-0082FC?logo=bluetooth&logoColor=white)
+![No cloud](https://img.shields.io/badge/cloud-nessuno-success)
+![License](https://img.shields.io/badge/licenza-GPL--3.0-blue)
+![Status](https://img.shields.io/badge/stato-sperimentale-orange)
+
+<img src="docs/img/nido-tucano.jpg" alt="Il cuscino anti-abbandono NIDO di Tucano" width="320">
+
+*Il cuscino anti-abbandono NIDO di Tucano, con cui questa app è compatibile*
+
+</div>
+
+---
 
 > [!CAUTION]
 > ## ⛔ LEGGERE PRIMA DI USARE: NESSUNA GARANZIA, NESSUNA RESPONSABILITÀ
@@ -30,45 +49,102 @@
 > usarla e continua a usare l'app ufficiale del produttore.
 
 > [!WARNING]
-> **Progetto non ufficiale.** Non è affiliato, approvato o supportato dal produttore del
-> dispositivo Nido. Il nome "Nido" è usato solo per indicare con quale dispositivo l'app è
-> compatibile. Il protocollo è stato ricostruito a scopo di interoperabilità e potrebbe
-> essere incompleto o cambiare con nuovi firmware.
+> **Progetto non ufficiale.** Non è affiliato, approvato o supportato da **Tucano** né dal
+> produttore del dispositivo **NIDO**. I nomi "NIDO" e "Tucano" sono marchi dei rispettivi
+> titolari e sono usati solo per indicare con quale dispositivo l'app è compatibile.
+> Il protocollo è stato ricostruito a scopo di interoperabilità e potrebbe essere
+> incompleto o cambiare con nuovi firmware.
 
-App Android alternativa per il tappetino anti-abbandono **Nido**, che funziona
-**senza account, senza registrazione e senza cloud**. L'APK non ha nemmeno il permesso
-INTERNET: tutto avviene tra il telefono e il tappetino via Bluetooth Low Energy.
+---
 
-## Come funziona
-- Un servizio in primo piano resta connesso al tappetino (nome `Nido_XXXX`).
-- Il tappetino invia ogni ~2 s una stringa `"<seduto>,<batteria_mV>\n"` (es. `1,2900`).
-  Dettagli del protocollo in [docs/PROTOCOLLO.md](docs/PROTOCOLLO.md).
-- **Allarme** (suoneria sul canale sveglia al volume massimo, vibrazione, schermata a tutto
-  schermo anche a telefono bloccato) se, con il bambino a bordo:
-  - la connessione si perde (ti sei allontanato);
-  - non arrivano dati per 15 s;
-  - il Bluetooth viene spento;
-  - il servizio viene riavviato e il tappetino non risponde entro 30 s.
-- Il seggiolino risulta vuoto dopo 2 letture `0` consecutive (~4 s), per filtrare i movimenti.
-- Tornando vicino al tappetino l'allarme si ferma da solo; altrimenti c'è il pulsante "Ho il bambino".
-- Avviso di batteria del tappetino sotto il 20%.
-- Pulsante "Prova allarme" per verificare che suoni.
+## ✨ Perché esiste
 
-## Installazione
-1. Scarica l'APK dalle [Release](../../releases) (o compilalo, vedi sotto) e installalo.
-2. Chiudi o disinstalla l'app ufficiale: il tappetino accetta un solo telefono connesso alla volta.
-3. Concedi i permessi e risolvi gli avvisi arancioni nell'app (ottimizzazione batteria,
-   allarme a schermo intero su Android 14+).
-4. "Cerca tappetino" → tocca il tuo `Nido_XXXX` → "Prova allarme".
+L'app ufficiale del NIDO chiede **registrazione e account** su un portale online per fare una cosa
+che in realtà avviene tutta in locale: parlare via Bluetooth con il cuscino e farti suonare il
+telefono se ti allontani con il bambino a bordo.
 
-Requisiti: Android 8.0 (API 26) o superiore, con Bluetooth LE.
+**Nido Locale** fa solo questo, e lo fa sul tuo telefono:
 
-## Compilazione
-Richiede JDK 17–21 e l'Android SDK (platform 34).
+| | App ufficiale | 🐣 Nido Locale |
+|---|:---:|:---:|
+| 👤 Account / registrazione | richiesto | **nessuno** |
+| ☁️ Dati inviati a server | sì | **nessuno** (niente permesso INTERNET) |
+| 📍 Accesso alla posizione GPS | sì | **no** |
+| 🔔 Allarme bambino a bordo | ✅ | ✅ |
+| 🔋 Avviso batteria cuscino | ✅ | ✅ |
+| 🧾 Codice sorgente aperto | ❌ | ✅ GPL-3.0 |
+
+## 🚀 Funzionalità
+
+- 🔗 **Connessione diretta** via Bluetooth LE al cuscino `Nido_XXXX`, con riconnessione automatica
+- 🚨 **Allarme** (suoneria sveglia al volume massimo, anche in silenzioso, 📳 vibrazione e schermata
+  rossa a tutto schermo anche a telefono bloccato) se, **con il bambino a bordo**:
+  - 🚶 ti allontani e la connessione si perde
+  - 📡 il cuscino smette di trasmettere per 15 s
+  - 📴 il Bluetooth viene spento
+  - 🔄 Android riavvia l'app e il cuscino non risponde entro 30 s
+- 🧘 **Antirimbalzo**: il seggiolino risulta vuoto solo dopo ~4 s di letture "vuoto", così i
+  movimenti del bambino non ingannano il sistema
+- 🔕 **Stop automatico** quando torni vicino all'auto, oppure con il pulsante *"Ho il bambino"*
+- 🔋 **Avviso batteria** del cuscino sotto il 20%
+- 🧪 **Prova allarme** per verificare in qualsiasi momento che suoni davvero
+- 📱 **Riparte da sola** dopo il riavvio del telefono
+- ⚠️ **Avvertenza di sicurezza** da accettare a ogni apertura dell'app
+
+## 📲 Installazione
+
+1. ⬇️ Scarica l'APK dalle [**Release**](../../releases) (oppure compilalo, vedi sotto)
+2. 🔓 Consenti l'installazione da fonti sconosciute e installalo
+3. ❌ **Chiudi o disinstalla l'app ufficiale**: il cuscino accetta **un solo telefono connesso** alla volta
+4. ✅ Accetta l'avvertenza e concedi i permessi
+5. 🟠 Tocca uno per uno gli **avvisi arancioni** nell'app (ottimizzazione batteria, allarme a
+   schermo intero su Android 14+): sono importanti perché l'allarme funzioni in background
+6. 🔍 *Cerca tappetino* → tocca il tuo `Nido_XXXX` → 🧪 *Prova allarme*
+
+> [!TIP]
+> Alcuni produttori (Xiaomi, Huawei, Samsung, OnePlus…) chiudono le app in background in modo
+> aggressivo. Consulta [dontkillmyapp.com](https://dontkillmyapp.com) per il tuo modello e
+> **collauda** l'app: con un peso sul cuscino allontanati dall'auto col telefono bloccato in tasca
+> e verifica che l'allarme suoni.
+
+**Requisiti:** Android 8.0 (API 26) o superiore, con Bluetooth LE.
+
+## 🔬 Come funziona
+
 ```
-./gradlew assembleDebug testDebugUnitTest
-# APK: app/build/outputs/apk/debug/app-debug.apk
+  ┌──────────────┐   Bluetooth LE, ogni ~2 s    ┌───────────────────┐
+  │ Cuscino NIDO │ ───── "1,2900\n" ─────────▶ │    Nido Locale    │
+  │  (Nido_XXXX) │   seduto , batteria mV       │ servizio in primo │
+  └──────────────┘                              │       piano       │
+                                                └─────────┬─────────┘
+                                                          │
+                     connessione persa + bambino seduto   ▼
+                                                     ALLARME !!!
 ```
 
-## Licenza
-[GPL-3.0](LICENSE)
+- 📡 Servizio BLE `49535343-fe7d-4ae5-8fa9-9fafd205e455` (UART trasparente Microchip)
+- 📨 Dati in notifica/indicazione su `49535343-1e4d-4bd9-ba61-23c647249616`
+- 🔤 Formato ASCII: `"<seduto>,<batteria_mV>\n"` → `1` = bambino a bordo, `0` = vuoto
+- 🔓 Nessuna autenticazione e nessun comando da inviare al cuscino
+
+Tutti i dettagli in 📄 [docs/PROTOCOLLO.md](docs/PROTOCOLLO.md).
+
+## 🛠️ Compilazione
+
+Serve JDK 17–21 e l'Android SDK (platform 34).
+
+```bash
+./gradlew assembleRelease testDebugUnitTest
+# 📦 APK: app/build/outputs/apk/release/app-release.apk
+```
+
+## 🤝 Contribuire
+
+Segnalazioni e pull request sono benvenute! In particolare sono utili:
+- 🧪 resoconti di **collaudo** con modello del telefono e versione di Android
+- 📋 log di nRF Connect da cuscini con **firmware diversi**
+
+## 📜 Licenza
+
+Distribuito con licenza [**GPL-3.0**](LICENSE), **senza alcuna garanzia**. Rileggi le
+**avvertenze in cima a questa pagina** prima dell'uso. 💛
