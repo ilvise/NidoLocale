@@ -1,17 +1,43 @@
 # Nido Locale
 
+> [!CAUTION]
+> ## ⛔ LEGGERE PRIMA DI USARE: NESSUNA GARANZIA, NESSUNA RESPONSABILITÀ
+>
+> **Questo è un progetto personale, sperimentale e amatoriale.** È stato scritto per uso
+> privato dell'autore e viene pubblicato solo a titolo informativo e di studio.
+>
+> - **NON è un dispositivo di sicurezza certificato** e **NON è conforme** ad alcuna norma sui
+>   dispositivi anti-abbandono (in Italia: art. 172 del Codice della Strada e D.M. 2 ottobre 2018 n. 122).
+>   Usarla al posto dell'app ufficiale **può far venire meno la conformità** del tuo sistema
+>   anti-abbandono ai requisiti di legge.
+> - **PUÒ NON FUNZIONARE.** Bug, aggiornamenti di Android, ottimizzazioni della batteria del
+>   produttore del telefono, Bluetooth spento o disturbato, telefono scarico, silenzioso o
+>   lontano, firmware diverso del tappetino, e infinite altre cause possono impedire
+>   all'allarme di suonare **senza alcun preavviso**.
+> - **L'AUTORE NON SI ASSUME ALCUNA RESPONSABILITÀ**, di nessun tipo, per qualsiasi danno a
+>   persone, animali o cose derivante dall'uso, dal mancato funzionamento o dal funzionamento
+>   errato di questo software, **compresi lesioni o morte di bambini o di chiunque altro**.
+>   L'autore non risponde in alcun modo della sicurezza dei figli altrui.
+> - Il software è fornito **"COSÌ COM'È", SENZA GARANZIE DI ALCUN TIPO**, esplicite o
+>   implicite, comprese quelle di funzionamento, affidabilità o idoneità a uno scopo
+>   particolare, nei limiti massimi consentiti dalla legge (vedi le sezioni 15 e 16 della
+>   [licenza GPL-3.0](LICENSE)).
+> - **Nessun software sostituisce l'attenzione dell'adulto.** La responsabilità della
+>   sorveglianza del bambino resta **sempre e soltanto di chi lo trasporta**.
+>
+> **Se scarichi, compili, installi o usi questa app, accetti di farlo interamente a tuo
+> rischio e sotto la tua esclusiva responsabilità.** Se non accetti queste condizioni, non
+> usarla e continua a usare l'app ufficiale del produttore.
+
+> [!WARNING]
+> **Progetto non ufficiale.** Non è affiliato, approvato o supportato dal produttore del
+> dispositivo Nido. Il nome "Nido" è usato solo per indicare con quale dispositivo l'app è
+> compatibile. Il protocollo è stato ricostruito a scopo di interoperabilità e potrebbe
+> essere incompleto o cambiare con nuovi firmware.
+
 App Android alternativa per il tappetino anti-abbandono **Nido**, che funziona
 **senza account, senza registrazione e senza cloud**. L'APK non ha nemmeno il permesso
 INTERNET: tutto avviene tra il telefono e il tappetino via Bluetooth Low Energy.
-
-> ⚠️ **Progetto non ufficiale.** Non è affiliato, approvato o supportato dal produttore
-> del dispositivo Nido. "Nido" è usato solo per indicare con quale dispositivo l'app è compatibile.
-
-> ⚠️ **Sicurezza.** È un software amatoriale, fornito **senza alcuna garanzia** (vedi
-> [LICENSE](LICENSE)). Un dispositivo anti-abbandono protegge la vita di un bambino: prima di
-> affidarti a questa app collaudala a lungo nelle tue condizioni reali (telefono, auto,
-> abitudini) e non considerarla un sostituto dell'attenzione dell'adulto né dei sistemi
-> certificati previsti dalla legge.
 
 ## Come funziona
 - Un servizio in primo piano resta connesso al tappetino (nome `Nido_XXXX`).
